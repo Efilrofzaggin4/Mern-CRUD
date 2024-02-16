@@ -37,6 +37,33 @@ app.get('/read', async (req, res) => {
     }
 });
 
+app.put('/update', async (req, res) => {
+  const newFoodName = req.body.newFoodName;
+  const id = req.body.id;
+  try {
+    const updatedFood = await Food.findByIdAndUpdate(id, { foodName: newFoodName }, { new: true });
+    if (!updatedFood) {
+      return res.status(404).json({ error: 'Food not found' });
+    }
+    res.json(updatedFood);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.delete('/delete/:id', async(req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedFood = await Food.findByIdAndDelete(id);
+    if (!deletedFood) {
+      return res.status(404).json({ error: 'Food not found' });
+    }
+    res.json({ message: 'Food deleted successfully' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

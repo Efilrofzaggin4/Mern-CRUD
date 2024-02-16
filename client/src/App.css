@@ -10,13 +10,17 @@
 label {
   font-size: larger;
 }
-input {
-  width: 300px;
-  height: 35px;
+input, button {
+  width: 200px;
+  height: 30px;
   font-size: larger;
+  margin: 5px;
 }
 
-button {
-  width: 150px
-}
 
+.food {
+  width: 500px;
+  height: 250px;
+  border: 2px black solid;
+  margin: 10px;
+}
